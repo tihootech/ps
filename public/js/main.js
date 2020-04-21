@@ -1,18 +1,20 @@
 // ==============================================================
 // keyboards
 // ==============================================================
+
+$('#inputs input:first').focus();
 window.addEventListener("keydown",function (e) {
 
 	// f1
 	if (e.keyCode === 112) {
 		e.preventDefault();
-		// $('#string').focus();
+		$('#inputs input:first').focus();
 	}
 	// f2
-	if (e.keyCode === 113) {
-		e.preventDefault();
-		// $('#star-add').focus();
-	}
+	// if (e.keyCode === 113) {
+	// 	e.preventDefault();
+	// 	$('#star-add').focus();
+	// }
 	// f3
 	if (e.keyCode === 114) {
 		e.preventDefault();
@@ -25,5 +27,7 @@ window.addEventListener("keydown",function (e) {
 // clone
 // ==============================================================
 function clone(target, parent) {
-	$(target).clone().appendTo(parent);
+	var e = $(target).clone();
+	e.val('');
+	e.appendTo(parent);
 }

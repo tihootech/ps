@@ -91,3 +91,13 @@ function parray($array)
         return "[]";
     }
 }
+
+function bq($query)
+{
+    $output = explode(',', $query);
+    $parts['stars'] = isset($output[0]) ? explode('&', $output[0]) : null;
+    $parts['points'] = isset($output[1]) ? explode('+', $output[1]) : null;
+    $parts['clothes'] = isset($output[2]) ? explode('+', $output[2]) : null;
+    $parts['kids'] = isset($output[3]) ? explode('+', $output[3]) : null;
+    return (object) $parts;
+}

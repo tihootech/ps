@@ -16,6 +16,7 @@ class SettingsController extends Controller
 
 	public function modify(Request $request)
 	{
+		// NOTE: for now it only modifies base points, in future maybe more
 		$data = prepare_multiple($request->all());
 		Base::truncate();
 		Base::insert($data);

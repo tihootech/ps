@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Star;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        if ($request->search) {
+            $stars = Star::where('name', 'like', "%$request->search%")->get();
+            return redirect()->route('home')->withStars($stars);
+        }
+        $strings = old('strings') ?? [''];
+        return view('home', compact('strings'));
     }
 }
