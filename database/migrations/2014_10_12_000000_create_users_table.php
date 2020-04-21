@@ -17,11 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        \App\User::create([
+            'name' => 'me',
+            'email' => 'ali.seyfi68@gmail.com',
+            'password' => bcrypt('1q2w3e4r5t'),
+        ]);
     }
 
     /**
