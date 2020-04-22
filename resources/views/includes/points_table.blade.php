@@ -1,5 +1,5 @@
 <div class="table-responsive-lg">
-	<table class="table table-striped table-hover table-bordered text-center">
+	<table class="table table-striped table-hover table-bordered text-center @isset($sm) table-sm @endisset">
 		<thead>
 			<tr>
 				<th> Star </th>

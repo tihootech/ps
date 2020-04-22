@@ -21,16 +21,32 @@
 				</div>
 				<div class="form-group col-md-3">
 					<label> {{ucfirst('birthday')}} (YYYY-mm-dd) </label>
-					<input type="text" name="birthday" value="{{$star->birthday->format('Y-m-d')}}" class="form-control">
+					<input type="text" name="birthday" value="{{$star->birthday ? $star->birthday->format('Y-m-d') : ''}}" class="form-control">
+				</div>
+				<div class="form-group col-md-3">
+					<label> {{ucfirst('color')}} </label>
+					<select class="form-control" name="color">
+						<option value=""> Please Select </option>
+						<option @if($star->color == 'White') selected @endif> White </option>
+						<option @if($star->color == 'Brunette') selected @endif> Brunette </option>
+						<option @if($star->color == 'Black') selected @endif> Black </option>
+						<option @if($star->color == 'Caucasian') selected @endif> Caucasian </option>
+						<option @if($star->color == 'Ginger') selected @endif> Ginger </option>
+						<option @if($star->color == 'Asian') selected @endif> Asian </option>
+						<option @if($star->color == 'Latin') selected @endif> Latin </option>
+						<option @if($star->color == 'Arab') selected @endif> Arab </option>
+					</select>
 				</div>
 				<div class="form-group col-md-3">
 					<label> {{ucfirst('size')}} </label>
 					<select class="form-control" name="size">
 						<option value=""> Please Select </option>
-						<option @if($star->size == 'Tiny') selected @endif> Tiny </option>
+						<option @if($star->size == 'TinySlim') selected @endif> TinySlim </option>
+						<option @if($star->size == 'TinyFilled') selected @endif> TinyFilled </option>
 						<option @if($star->size == 'Ave') selected @endif> Ave </option>
-						<option @if($star->size == 'Slim') selected @endif> Slim </option>
-						<option @if($star->size == 'Filled') selected @endif> Filled </option>
+						<option @if($star->size == 'AveFilled') selected @endif> AveFilled </option>
+						<option @if($star->size == 'Slender') selected @endif> Slender </option>
+						<option @if($star->size == 'TallFilled') selected @endif> TallFilled </option>
 						<option @if($star->size == 'Large') selected @endif> Large </option>
 					</select>
 				</div>
@@ -40,6 +56,7 @@
 						<option value=""> Please Select </option>
 						<option @if($star->boobs == 'Small') selected @endif> Small </option>
 						<option @if($star->boobs == 'Medium') selected @endif> Medium </option>
+						<option @if($star->boobs == 'Average') selected @endif> Average </option>
 						<option @if($star->boobs == 'Perfect') selected @endif> Perfect </option>
 						<option @if($star->boobs == 'Large') selected @endif> Large </option>
 						<option @if($star->boobs == 'Huge') selected @endif> Huge </option>

@@ -7,11 +7,14 @@
 				<th> Country </th>
 				<th> Height </th>
 				<th> Age </th>
-				<th> Birthday </th>
+				@unless (isset($in_home))
+					<th> Birthday </th>
+				@endunless
+				<th> Color </th>
 				<th> Size </th>
 				<th> Boobs </th>
-				<th> Year </th>
-				@unless (isset($no_action))
+				@unless (isset($in_home))
+					<th> Year </th>
 					<th colspan="2"> Actions </th>
 				@endunless
 			</tr>
@@ -27,16 +30,19 @@
 						data-content="{{$star->birthday->toFormattedDateString()}}" @endif>
 						{{$star->age ?? '-'}}
 					</td>
-					<td @if($star->younger_than_me()) class="text-danger" @endif>
-						{{$star->birthday ? pdate($star->birthday) : '-'}}
-					</td>
+					@unless (isset($in_home))
+						<td @if($star->younger_than_me()) class="text-danger" @endif>
+							{{$star->birthday ? pdate($star->birthday) : '-'}}
+						</td>
+					@endunless
+					<td> {{$star->color ?? '-'}} </td>
 					<td> {{$star->size ?? '-'}} </td>
 					<td> {{$star->boobs ?? '-'}} </td>
-					<td @if($star->created_at) data-toggle="popover"
-						data-content="{{$star->created_at->toFormattedDateString()}}" @endif>
-						{{$star->year ?? '-'}}
-					</td>
-					@unless (isset($no_action))
+					@unless (isset($in_home))
+						<td @if($star->created_at) data-toggle="popover"
+							data-content="{{$star->created_at->toFormattedDateString()}}" @endif>
+							{{$star->year ?? '-'}}
+						</td>
 						<td>
 							<a href="{{route('star.edit', $star)}}" class="btn btn-link btn-sm">
 								<i class="material-icons icon text-success">edit</i>

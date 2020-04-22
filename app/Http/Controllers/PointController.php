@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 
 class PointController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         $points = Point::query();

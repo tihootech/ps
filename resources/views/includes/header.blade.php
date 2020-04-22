@@ -31,6 +31,10 @@
 					<i class="material-icons">apps</i> More Actions
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{route('image.upload_form')}}">
+						<i class="material-icons icon">photo</i>
+						Upload Image
+					</a>
 					<a class="dropdown-item" href="{{route('settings')}}">
 						<i class="material-icons icon">settings</i>
 						Settings

@@ -16,6 +16,40 @@ class Star extends Model
         return $this->birthday ? Carbon::parse($this->birthday)->age : null;
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Image::class)->where('type', 'profile');
+    }
+
+    public function cover()
+    {
+        return $this->hasOne(Image::class)->where('type', 'cover');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class)->orderBy('type');
+    }
+
+    public function points()
+    {
+        return $this->hasMany(Point::class)->latest()->limit(10);
+    }
+
+    public function rank($type)
+    {
+        $tops = [];
+        $now = now();
+        if ($type=='month') {
+            $tops = Point::tops($now->year, mn($now->month))->toArray();
+        }
+        if ($type=='year') {
+            $tops = Point::tops()->toArray();
+        }
+        $key = array_search($this->id, array_column($tops, 'id'));
+        return $key+1;
+    }
+
     public function younger_than_me()
     {
         $mine = Carbon::create('1994-10-28');

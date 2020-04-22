@@ -19,8 +19,14 @@ Route::put('settings', 'SettingsController@modify')->name('settings.modify');
 Route::resource('point', 'PointController')->except(['create', 'store', 'show']);
 Route::resource('star', 'StarController')->except(['create', 'store']);
 
-// result
+// results
 Route::get('results/{year?}', 'LandingController@results')->name('results');
+
+// images
+Route::get('image/upload/{star?}', 'ImageController@upload_image_form')->name('image.upload_form');
+Route::get('image', 'ImageController@index')->name('image.index');
+Route::post('image/upload', 'ImageController@upload_image')->name('image.upload');
+Route::delete('image/{image}', 'ImageController@destroy')->name('image.destroy');
 
 // quick actions
 Route::post('quick/add', 'QuickActionsController@quick_add')->name('quick.add');

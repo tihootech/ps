@@ -20,6 +20,16 @@
 					<label class="custom-control-label" for="oldest"> {{ucfirst('oldest')}} </label>
 				</div>
 				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="country" name="order" class="custom-control-input" value="country"
+					@if(request('order') == 'country') checked @endif>
+					<label class="custom-control-label" for="country"> {{ucfirst('country')}} </label>
+				</div>
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="color" name="order" class="custom-control-input" value="color"
+					@if(request('order') == 'color') checked @endif>
+					<label class="custom-control-label" for="color"> {{ucfirst('color')}} </label>
+				</div>
+				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" id="size" name="order" class="custom-control-input" value="size"
 					@if(request('order') == 'size') checked @endif>
 					<label class="custom-control-label" for="size"> {{ucfirst('size')}} </label>

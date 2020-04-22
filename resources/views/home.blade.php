@@ -45,6 +45,11 @@
                                     @if(session('points_type') == 'instagram') checked @endif>
                                     <label class="custom-control-label" for="i2"> instagram </label>
                                 </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="i3" name="points_type" class="custom-control-input" value="dream"
+                                    @if(session('points_type') == 'dream') checked @endif>
+                                    <label class="custom-control-label" for="i3"> dream </label>
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" onclick="clone('#inputs > input:first', '#inputs')" class="btn btn-warning btn-block">
@@ -65,7 +70,7 @@
                         <h4 class="m-0 text-primary"> <i class="material-icons">list</i> Stars List </h4>
                     </div>
                     <div class="card-body">
-                        @include('includes.stars_table', ['stars' => session('stars'), 'no_action' => true])
+                        @include('includes.stars_table', ['stars' => session('stars'), 'in_home' => true])
                     </div>
                 </div>
             @endif

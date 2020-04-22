@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class StarController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $stars = Star::query();
@@ -18,6 +23,8 @@ class StarController extends Controller
                 $stars = $stars->orderBy('birthday', 'DESC');
             }elseif ($order == 'oldest') {
                 $stars = $stars->orderBy('birthday');
+            }elseif($order == 'country'){
+                $stars = $stars->where('country', '!=', 'United States')->orderBy('country');
             }else {
                 $stars = $stars->orderBy($order, 'DESC');
             }
@@ -43,6 +50,7 @@ class StarController extends Controller
             'country' => 'nullable|string',
             'height' => 'nullable|integer',
             'birthday' => 'nullable|date',
+            'color' => 'nullable|string',
             'size' => 'nullable|string',
             'boobs' => 'nullable|string',
         ]);

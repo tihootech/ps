@@ -16,6 +16,11 @@ label {
 	position: relative;
 	top: 3px;
 }
+.btn .material-icons {
+	top: 3px;
+	font-size: 15px;
+	margin-right: 3px;
+}
 .nav-link .material-icons {
 	font-size: 16px;
 }
@@ -44,4 +49,16 @@ label {
 }
 .form-control:focus {
 	box-shadow: 0 0 0 0.1rem rgba(52,144,220,.25);
+}
+.form-control.form-control-lg {
+	font-size: 15px;
+}
+
+/* customs */
+.profile-picture {
+	border-radius: 50% !important;
+	width: 200px;
+	position: absolute;
+	bottom: -80px;
+	z-index: 999;
 }
