@@ -3,14 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Star extends Model
 {
+    protected $guarded = ['id'];
     protected $appends = ['age'];
+    protected $dates = ['birthday'];
 
-    public function getAgeAttribute($value='')
+    public function getAgeAttribute()
     {
-        return $this->birthday ? 2 : null;
+        return $this->birthday ? Carbon::parse($this->birthday)->age : null;
+    }
+
+    public function younger_than_me()
+    {
+        $mine = Carbon::create('1994-10-28');
+        return $this->birthday > $mine;
     }
 
     public function assignPoints($parts)

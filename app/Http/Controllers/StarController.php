@@ -8,34 +8,46 @@ use Illuminate\Http\Request;
 class StarController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
+        $stars = Star::query();
+        if ($order = $request->order) {
+            if ($order == 'tallest') {
+                $stars = $stars->orderBy('height', 'DESC');
+            }elseif ($order == 'youngest') {
+                $stars = $stars->orderBy('birthday', 'DESC');
+            }elseif ($order == 'oldest') {
+                $stars = $stars->orderBy('birthday');
+            }else {
+                $stars = $stars->orderBy($order, 'DESC');
+            }
+        }
+        $stars = $stars->get();
+        return view('app.stars.index', compact('stars'));
     }
 
     public function show(Star $star)
     {
-        //
+        return view('app.stars.show', compact('star'));
     }
 
     public function edit(Star $star)
     {
-        //
+        return view('app.stars.edit', compact('star'));
     }
 
     public function update(Request $request, Star $star)
     {
-        //
+        $data = $request->validate([
+            'name' => "required|unique:stars,name,$star->id",
+            'country' => 'nullable|string',
+            'height' => 'nullable|integer',
+            'birthday' => 'nullable|date',
+            'size' => 'nullable|string',
+            'boobs' => 'nullable|string',
+        ]);
+        $star->update($data);
+        return redirect()->route('star.index')->withMessage('Star Updated Successfuly');
     }
 
     public function destroy(Star $star)

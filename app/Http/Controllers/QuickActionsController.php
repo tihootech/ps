@@ -16,6 +16,7 @@ class QuickActionsController extends Controller
 		]);
 		$star = new Star;
 		$star->name = $request->star;
+		$star->year = now()->year;
 		$star->save();
 		return back()->withMessage("Star Added Successfully : <b>$star->name</b>");
     }
@@ -64,7 +65,7 @@ class QuickActionsController extends Controller
 				$sum = $star->assignPoints($parts);
 
 				// create output message
-				$messages []= "<b>".number_format($sum)."</b>"." Points added for $star->name";
+				$messages []= "<b>".nf($sum)."</b>"." Points added for $star->name";
 			}
 		}
 
@@ -88,7 +89,7 @@ class QuickActionsController extends Controller
 		$star = Star::whereName($request->star)->first();
 		$amount = $base->quantitiy * $request->degree;
 		Point::make($star->id, $amount, 'master');
-		return back()->withMessage("Master assigned to $star->name and amount is ". number_format($amount));
+		return back()->withMessage("Master assigned to $star->name and amount is ". nf($amount));
     }
 
     public function quick_kid(Request $request)
@@ -112,7 +113,7 @@ class QuickActionsController extends Controller
 			$sum += $amount = $base->quantitiy * $degree;
 			Point::make($star->id, $amount, 'kid');
 		}
-		return back()->withMessage("Kid Points assigned to $star->name and amount is ". number_format($sum));
+		return back()->withMessage("Kid Points assigned to $star->name and amount is ". nf($sum));
     }
 
 }

@@ -12,12 +12,17 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link @if(rn() == '') active @endif" href="#">
+				<a class="nav-link @if(rn() == 'results') active @endif" href="{{route('results')}}">
+					<i class="material-icons">assessment</i> Result
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link @if(rn() == 'point.index') active @endif" href="{{route('point.index')}}">
 					<i class="material-icons">list</i> Recent Points
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link @if(rn() == '') active @endif" href="#">
+				<a class="nav-link @if(rn() == 'star.index') active @endif" href="{{route('star.index')}}">
 					<i class="material-icons">star</i> Stars List
 				</a>
 			</li>

@@ -16,8 +16,11 @@ Route::get('settings', 'SettingsController@edit')->name('settings');
 Route::put('settings', 'SettingsController@modify')->name('settings.modify');
 
 // points & stars
-Route::resource('point', 'PointController');
+Route::resource('point', 'PointController')->except(['create', 'store', 'show']);
 Route::resource('star', 'StarController')->except(['create', 'store']);
+
+// result
+Route::get('results/{year?}', 'LandingController@results')->name('results');
 
 // quick actions
 Route::post('quick/add', 'QuickActionsController@quick_add')->name('quick.add');

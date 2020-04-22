@@ -101,3 +101,19 @@ function bq($query)
     $parts['kids'] = isset($output[3]) ? explode('+', $output[3]) : null;
     return (object) $parts;
 }
+
+function pdate($carbon)
+{
+    $date = \Morilog\Jalali\Jalalian::fromCarbon($carbon);
+    return $date->format('Y-m-d');
+}
+
+function mn($i)
+{
+    return date('F', mktime(0, 0, 0, $i, 10));
+}
+
+function nf($i)
+{
+    return number_format($i);
+}

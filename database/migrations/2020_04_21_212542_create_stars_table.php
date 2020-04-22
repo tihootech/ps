@@ -15,12 +15,13 @@ class CreateStarsTable extends Migration
     {
         Schema::create('stars', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('country')->nullable();
             $table->unsignedSmallInteger('height')->nullable();
             $table->date('birthday')->nullable();
             $table->string('size')->nullable();
             $table->string('boobs')->nullable();
+            $table->unsignedSmallInteger('year');
             $table->timestamps();
         });
     }

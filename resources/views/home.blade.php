@@ -5,6 +5,21 @@
     <div class="row">
         <div class="col-md-6">
 
+            @if (count($birthdays))
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h4 class="m-0 text-primary"> <i class="material-icons">cake</i> Todays Birthdays </h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach ($birthdays as $star_with_today_birthday)
+                            <a href="{{route('star.show', $star_with_today_birthday)}}" class="mx-2">
+                                {{$star_with_today_birthday->name}}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-header">
                     <h4 class="m-0 text-primary"> <i class="material-icons">add</i> Quick Plus </h4>
@@ -50,7 +65,7 @@
                         <h4 class="m-0 text-primary"> <i class="material-icons">list</i> Stars List </h4>
                     </div>
                     <div class="card-body">
-                        @include('includes.stars_table', ['stars' => session('stars')])
+                        @include('includes.stars_table', ['stars' => session('stars'), 'no_action' => true])
                     </div>
                 </div>
             @endif

@@ -7,6 +7,10 @@ body {
 	background-color: #EFEFF6;
 }
 
+label {
+	font-weight: bold;
+}
+
 /* material icons */
 .material-icons {
 	position: relative;
