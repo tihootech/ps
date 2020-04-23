@@ -29,23 +29,26 @@ class AwardController extends Controller
     public function assign(Request $request)
     {
 		$request->validate([
-			'star' => 'required|exists:stars,name',
-			'trophy' => 'required|exists:trophies,id',
-			'month' => 'required|integer|between:1,12',
-			'year' => 'required|integer|digits:4',
+			'star.*' => 'required|exists:stars,name',
+			'trophy.*' => 'required|exists:trophies,id',
+			'month.*' => 'required|integer|between:1,12',
+			'year.*' => 'required|integer|digits:4',
 		]);
 
-		$star = Star::whereName($request->star)->first();
-		$trohoy = Trophy::find($request->trophy);
+		for ($i=0; $i < count($request->star) ; $i++) {
 
-		$award = new Award;
-		$award->star_id = $star->id;
-		$award->trophy_id = $trohoy->id;
-		$award->month = $request->month;
-		$award->year = $request->year;
-		$award->save();
+			$star = Star::whereName($request->star[$i])->first();
 
-		return back()->withMessage("$trohoy->title assigned to $star->name");
+			$award = new Award;
+			$award->star_id = $star->id;
+			$award->trophy_id = $request->trophy[$i];
+			$award->month = $request->month[$i];
+			$award->year = $request->year[$i];
+			$award->save();
+
+		}
+
+		return back()->withMessage("Trophies Assigned");
     }
 
     public function destroy(Award $award)

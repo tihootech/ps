@@ -8,36 +8,39 @@
 	</div>
 	<div class="card mt-3">
 		<div class="card-body">
-			<form class="row justify-content-center" action="{{route('award.assign')}}" method="post">
+			<form action="{{route('award.assign')}}" method="post">
 				@csrf
-				<div class="col-md-3 form-group">
-					<label> Star </label>
-					<input type="text" name="star" value="{{$star->name}}" class="form-control">
+				<div id="parent">
+					<div class="row justify-content-center">
+						<div class="col-md-3 form-group">
+							<label> Star </label>
+							<input type="text" name="star[]" value="{{$star->name}}" class="form-control" required>
+						</div>
+						<div class="col-md-3 form-group">
+							<label> Trophy </label>
+							<select class="form-control" name="trophy[]" required>
+								<option value=""> Please Select </option>
+								@foreach ($trophies as $trophy)
+									<option value="{{$trophy->id}}"> {{$trophy->title}} </option>
+								@endforeach
+							</select>
+						</div>
+						<div class="col-md-3 form-group">
+							<label> Month </label>
+							<input type="number" name="month[]" class="form-control" required>
+						</div>
+						<div class="col-md-3 form-group">
+							<label> Year </label>
+							<input type="number" name="year[]" class="form-control" required>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-3 form-group">
-					<label> Trophy </label>
-					<select class="form-control" name="trophy">
-						<option value=""> Please Select </option>
-						@foreach ($trophies as $trophy)
-							<option value="{{$trophy->id}}"> {{$trophy->title}} </option>
-						@endforeach
-					</select>
-				</div>
-				<div class="col-md-3 form-group">
-					<label> Month </label>
-					<select class="form-control" name="month">
-						<option value=""> Please Select </option>
-						@for ($i=1; $i <= 12; $i++)
-							<option value="{{$i}}"> {{mn($i)}} ({{$i}}) </option>
-						@endfor
-					</select>
-				</div>
-				<div class="col-md-3 form-group">
-					<label> Year </label>
-					<input type="number" name="year" class="form-control">
-				</div>
-				<div class="col-md-2 mt-3">
-					<button type="submit" class="btn btn-primary btn-block">Upload</button>
+				<hr>
+				<div class="text-center">
+					<button type="button" class="btn btn-warning mx-3" onclick="$('#parent .row:first').clone().appendTo('#parent')">
+						Clone
+					</button>
+					<button type="submit" class="btn btn-primary mx-3">Assign</button>
 				</div>
 			</form>
 		</div>
