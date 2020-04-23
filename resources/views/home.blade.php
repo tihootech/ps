@@ -113,7 +113,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="material-icons">spa</i> Quick Kid </h4>
+                    <h4 class="m-0 text-primary"> <i class="material-icons">face</i> Quick Kid </h4>
                 </div>
                 <div class="card-body">
                     <form class="row" action="{{route('quick.kid')}}" method="post">

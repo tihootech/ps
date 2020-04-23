@@ -21,6 +21,7 @@ Route::resource('star', 'StarController')->except(['create', 'store']);
 
 // results
 Route::get('results/{year?}', 'LandingController@results')->name('results');
+Route::get('prixes/{year?}', 'LandingController@prixes')->name('prixes');
 
 // images
 Route::get('image/upload/{star?}', 'ImageController@upload_image_form')->name('image.upload_form');

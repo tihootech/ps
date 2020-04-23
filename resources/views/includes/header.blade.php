@@ -26,6 +26,11 @@
 					<i class="material-icons">star</i> Stars List
 				</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link @if(rn() == 'prixes') active @endif" href="{{route('prixes')}}">
+					<i class="material-icons">timeline</i> Prixes
+				</a>
+			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="material-icons">apps</i> More Actions
