@@ -21,6 +21,32 @@
 						in <b class="text-info"> {{$star->birthday->toFormattedDateString()}} </b>
 						and she's <b class="text-info"> {{$star->age}} </b> years old.
 						Persian birthdate is : <b class="text-info"> {{pdate($star->birthday)}} </b>
+						<hr>
+						<b class="text-danger"> GAwards </b>
+						<div class="mt-2">
+							@if ($star->gawards->count())
+								@foreach ($star->gawards as $award)
+									<span class="bg-danger d-inline-block text-light m-1 px-2 py-1">
+										{{$award->title}} ({{$award->year}})
+									</span>
+								@endforeach
+							@else
+								None
+							@endif
+						</div>
+						<hr>
+						<b class="text-success"> Beauty Awards </b>
+						<div class="mt-2">
+							@if ($star->bawards->count())
+								@foreach ($star->bawards as $award)
+									<span class="bg-success d-inline-block text-light m-1 px-2 py-1">
+										{{$award->title}} ({{$award->year}})
+									</span>
+								@endforeach
+							@else
+								None
+							@endif
+						</div>
 					</p>
 					<div class="table-responsive-lg">
 						<table class="table">
@@ -87,7 +113,7 @@
 			</div>
 
 			@if ($star->awards->count())
-				<div class="row">
+				<div class="row justify-content-center">
 					@foreach ($star->awards as $award)
 						<div class="col-md-2 p-1">
 							<div class="card

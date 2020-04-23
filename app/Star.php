@@ -21,6 +21,18 @@ class Star extends Model
     	return $this->hasMany(Award::class)->orderBy('year')->orderBy('month');
     }
 
+    public function gawards()
+    {
+        $ids = Trophy::whereType('gaward')->pluck('id')->toArray();
+    	return $this->hasMany(Award::class)->whereIn('id', $ids)->orderBy('year')->orderBy('month');
+    }
+
+    public function bawards()
+    {
+        $ids = Trophy::whereType('beauty')->pluck('id')->toArray();
+    	return $this->hasMany(Award::class)->whereIn('id', $ids)->orderBy('year')->orderBy('month');
+    }
+
     public function profile()
     {
         return $this->hasOne(Image::class)->where('type', 'profile');
@@ -38,7 +50,7 @@ class Star extends Model
 
     public function points()
     {
-        return $this->hasMany(Point::class)->latest()->limit(10);
+        return $this->hasMany(Point::class)->latest()->limit(15);
     }
 
     public function rank($type, $year=null)
@@ -46,7 +58,7 @@ class Star extends Model
         $tops = [];
         $now = now();
         $year =$year ?? $now->year;
-        
+
         if ($type=='month') {
             $tops = Point::tops($year, mn($now->month))->toArray();
         }
