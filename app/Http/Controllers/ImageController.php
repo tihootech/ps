@@ -14,7 +14,7 @@ class ImageController extends Controller
         if ($request->star) {
             $images = $images->where('star_id', $request->star);
         }
-        $images = $images->paginate(20);
+        $images = $images->latest()->paginate(20);
         return view('app.images.index', compact('images'));
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Base;
+use App\Trophy;
 
 class SettingsController extends Controller
 {
@@ -11,20 +12,21 @@ class SettingsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function edit()
     {
 		$bases = Base::all();
+		$trophies = Trophy::all();
 		$bases []= new Base;
-    	return view('app.settings.edit', compact('bases'));
+		$trophies []= new Trophy;
+    	return view('app.settings.edit', compact('bases', 'trophies'));
     }
 
 	public function modify(Request $request)
 	{
-		// NOTE: for now it only modifies base points, in future maybe more
 		$data = prepare_multiple($request->all());
-		Base::truncate();
-		Base::insert($data);
+		$request->class::truncate();
+		$request->class::insert($data);
 		return back()->withMessage('Success!');
 	}
 }

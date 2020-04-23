@@ -16,6 +16,11 @@ class Star extends Model
         return $this->birthday ? Carbon::parse($this->birthday)->age : null;
     }
 
+    public function awards()
+    {
+    	return $this->hasMany(Award::class)->orderBy('year')->orderBy('month');
+    }
+
     public function profile()
     {
         return $this->hasOne(Image::class)->where('type', 'profile');

@@ -12,7 +12,7 @@
 					<hr>
 					<h5>
 						<span class="float-left"> This Month Rank : <b class="text-danger"> {{$star->rank('month')}} </b> </span>
-						<b class="mx-1">-</b>
+						<b class="m-1">-</b>
 						<span class="float-right"> This Year Rank : <b class="text-danger"> {{$star->rank('year')}} </b> </span>
 					</h5>
 					<hr>
@@ -43,25 +43,50 @@
 						</table>
 					</div>
 					<hr>
-					<a href="{{route('star.edit', $star)}}" class="btn btn-outline-success mx-1">
+					<a href="{{route('star.edit', $star)}}" class="btn btn-outline-primary m-1">
 						<i class="material-icons">edit</i> Edit
 					</a>
-					<a href="{{route('image.upload_form', $star)}}" class="btn btn-outline-primary mx-1">
+					<a href="{{route('image.upload_form', $star)}}" class="btn btn-outline-primary m-1">
 						<i class="material-icons">photo</i> Upload Photo
 					</a>
-					<a href="{{route('image.index')}}?star={{$star->id}}" class="btn btn-outline-primary mx-1">
+					<a href="{{route('image.index')}}?star={{$star->id}}" class="btn btn-outline-primary m-1">
 						<i class="material-icons">settings</i> Manage Images
+					</a>
+					<a href="{{route('award.assign_form', $star)}}" class="btn btn-outline-primary m-1">
+						<i class="material-icons">add</i> Assign Award
+					</a>
+					<a href="{{route('award.index')}}?star={{$star->id}}" class="btn btn-outline-primary m-1">
+						<i class="material-icons">list</i> Awards List
+					</a>
+					<a href="{{route('point.index')}}?star={{$star->id}}" class="btn btn-outline-primary m-1">
+						<i class="material-icons">list</i> Her Recent Points
 					</a>
 				</div>
 				<div class="col-md-6">
-					@include('includes.points_table', ['points' => $star->points, 'sm' =>true])
-					<div>
-						<a href="{{route('point.index')}}?star={{$star->id}}" class="btn btn-warning">
-							See All
-						</a>
-					</div>
+					@include('includes.points_table', ['points' => $star->points, 'in_show' =>true])
 				</div>
 			</div>
+
+			<hr>
+			@if ($star->awards->count())
+				<div class="row">
+					@foreach ($star->awards as $award)
+						<div class="col-md-2 p-1">
+							<div class="card @if($award->gaward) text-dark bg-warning @else text-light bg-secondary @endif">
+								<div class="card-header lead">{{$award->title}}</div>
+								<div class="card-body">
+									{{mn($award->month)}}, {{$award->year}}
+								</div>
+							</div>
+						</div>
+					@endforeach
+				</div>
+			@else
+				<div class="alert alert-warning">
+					No Awards Yet :(
+				</div>
+			@endif
+
 		</div>
 	</div>
 	@if ($star->cover)

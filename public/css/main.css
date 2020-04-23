@@ -53,6 +53,9 @@ label {
 .form-control.form-control-lg {
 	font-size: 15px;
 }
+.dropdown-item {
+	padding: 0.25rem 0.5rem;
+}
 
 /* customs */
 .profile-picture {

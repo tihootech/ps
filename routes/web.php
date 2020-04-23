@@ -23,6 +23,12 @@ Route::resource('star', 'StarController')->except(['create', 'store']);
 Route::get('results/{year?}', 'LandingController@results')->name('results');
 Route::get('prixes/{year?}', 'LandingController@prixes')->name('prixes');
 
+// awards
+Route::get('award/assign/{star?}', 'AwardController@assign_form')->name('award.assign_form');
+Route::post('award/assign', 'AwardController@assign')->name('award.assign');
+Route::get('award/index', 'AwardController@index')->name('award.index');
+Route::delete('award/{award}', 'AwardController@destroy')->name('award.destroy');
+
 // images
 Route::get('image/upload/{star?}', 'ImageController@upload_image_form')->name('image.upload_form');
 Route::get('image', 'ImageController@index')->name('image.index');

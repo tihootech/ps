@@ -24,7 +24,36 @@
 				</div>
 				<hr>
 				<div class="text-center mb-3">
-					<button type="submit" class="btn btn-primary"> Confirm </button>
+					<button type="submit" class="btn btn-primary" name="class" value="App\Base"> Confirm </button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-6">
+			<form class="card" action="{{route('settings.modify')}}" method="post">
+				@csrf
+				@method('PUT')
+				<div class="card-body">
+					<h2> Base Trophies </h2>
+					<hr>
+					@foreach ($trophies as $i => $trophy)
+						<div class="row @if($i) mt-3 @endif">
+							<div class="col-md-8">
+								<label> Title </label>
+								<input type="text" class="form-control" name="title[]" value="{{$trophy->title}}">
+							</div>
+							<div class="col-md-4">
+								<label> GAward </label>
+								<select class="form-control" name="gaward[]">
+									<option value="0"> No </option>
+									<option value="1" @if($trophy->gaward) selected @endif> Yes </option>
+								</select>
+							</div>
+						</div>
+					@endforeach
+				</div>
+				<hr>
+				<div class="text-center mb-3">
+					<button type="submit" class="btn btn-primary" name="class" value="App\Trophy"> Confirm </button>
 				</div>
 			</form>
 		</div>
