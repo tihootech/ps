@@ -24,13 +24,13 @@ class Star extends Model
     public function gawards()
     {
         $ids = Trophy::whereType('gaward')->pluck('id')->toArray();
-    	return $this->hasMany(Award::class)->whereIn('award_id', $ids)->orderBy('year')->orderBy('month');
+    	return $this->hasMany(Award::class)->whereIn('trophy_id', $ids)->orderBy('year')->orderBy('month');
     }
 
     public function bawards()
     {
         $ids = Trophy::whereType('beauty')->pluck('id')->toArray();
-    	return $this->hasMany(Award::class)->whereIn('award_id', $ids)->orderBy('year')->orderBy('month');
+    	return $this->hasMany(Award::class)->whereIn('trophy_id', $ids)->orderBy('year')->orderBy('month');
     }
 
     public function profile()
