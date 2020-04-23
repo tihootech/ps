@@ -22,6 +22,7 @@ Route::resource('star', 'StarController')->except(['create', 'store']);
 // results
 Route::get('results/{year?}', 'LandingController@results')->name('results');
 Route::get('prixes/{year?}', 'LandingController@prixes')->name('prixes');
+Route::get('statics', 'LandingController@statics')->name('statics');
 
 // awards
 Route::get('award/assign/{star?}', 'AwardController@assign_form')->name('award.assign_form');

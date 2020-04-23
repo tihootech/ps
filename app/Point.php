@@ -27,7 +27,7 @@ class Point extends Model
         }
     }
 
-    public static function top10($year,$month)
+    public static function topGeneral($year,$month, $limit=null)
     {
         $query = "stars.id, stars.name, SUM(points.amount) as sum";
         $collection =  Star::select(\DB::raw($query))
@@ -35,9 +35,25 @@ class Point extends Model
             ->where('month', '<=', $month)
             ->leftJoin('points', 'points.star_id', '=', 'stars.id')
             ->orderBy('sum', 'DESC')
-            ->groupBy('stars.id')
-            ->limit(10)
-            ->get();
+            ->groupBy('stars.id');
+        if ($limit) {
+            $collection = $collection->limit($limit);
+        }
+        $collection = $collection->get();
+        return $collection;
+    }
+
+    public static function topsOfAllTime($limit=null)
+    {
+        $query = "stars.id, stars.name, SUM(points.amount) as sum";
+        $collection =  Star::select(\DB::raw($query))
+            ->leftJoin('points', 'points.star_id', '=', 'stars.id')
+            ->orderBy('sum', 'DESC')
+            ->groupBy('stars.id');
+        if ($limit) {
+            $collection = $collection->limit($limit);
+        }
+        $collection = $collection->get();
         return $collection;
     }
 

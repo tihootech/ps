@@ -36,6 +36,10 @@
 					<i class="material-icons">apps</i> More Actions
 				</a>
 				<div class="dropdown-menu " aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{route('statics')}}">
+						<i class="material-icons icon">timeline</i>
+						Statics
+					</a>
 					<a class="dropdown-item" href="{{route('award.assign_form')}}">
 						<i class="material-icons icon">weekend</i>
 						Assign Award

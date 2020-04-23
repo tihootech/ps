@@ -41,7 +41,7 @@
 					<td> {{$star->boobs ?? '-'}} </td>
 					@unless (isset($in_home))
 						<td @if($star->created_at) data-toggle="popover"
-							data-content="{{$star->created_at->toFormattedDateString()}}" @endif>
+							data-content="{{$star->created_at->toFormattedDateString()}}, {{pdate($star->created_at)}}" @endif>
 							{{$star->year ?? '-'}}
 						</td>
 						<td> {{$star->awards_count ?? 0}} </td>

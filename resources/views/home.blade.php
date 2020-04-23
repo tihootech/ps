@@ -12,9 +12,12 @@
                     </div>
                     <div class="card-body">
                         @foreach ($birthdays as $star_with_today_birthday)
-                            <a href="{{route('star.show', $star_with_today_birthday)}}" class="mx-2">
-                                {{$star_with_today_birthday->name}}
-                            </a>
+                            <p>
+                                <a href="{{route('star.show', $star_with_today_birthday)}}">
+                                    {{$star_with_today_birthday->name}}
+                                </a>
+                                <span class="mx-1"> {{$star_with_today_birthday->age}} Years Old Now </span>
+                            </p>
                         @endforeach
                     </div>
                 </div>

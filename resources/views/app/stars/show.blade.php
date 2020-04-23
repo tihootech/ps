@@ -20,7 +20,10 @@
 						Born in <b class="text-info"> {{$star->country}} </b>
 						in <b class="text-info"> {{$star->birthday->toFormattedDateString()}} </b>
 						and she's <b class="text-info"> {{$star->age}} </b> years old.
+						<br>
 						Persian birthdate is : <b class="text-info"> {{pdate($star->birthday)}} </b>
+						<br>
+						She was discovered in : <b class="text-info"> {{pdate($star->created_at)}} </b>
 						<hr>
 						<b class="text-danger"> GAwards </b>
 						<div class="mt-2">
@@ -89,7 +92,13 @@
 					</a>
 				</div>
 				<div class="col-md-6">
-					@include('includes.points_table', ['points' => $star->points, 'in_show' =>true])
+					@for ($i=2019; $i <= now()->year; $i++)
+						<h4> Year {{$i}} </h4>
+						<canvas id="year-{{$i}}"></canvas>
+						@if ($i != now()->year)
+							<hr>
+						@endif
+					@endfor
 				</div>
 			</div>
 
@@ -144,5 +153,76 @@
 	@if ($star->cover)
 		<img src="{{asset($star->cover->path)}}" class="img-fluid">
 	@endif
+
+@endsection
+
+
+@section('charts')
+
+	@for ($year_in_loop=2019; $year_in_loop <= now()->year; $year_in_loop++)
+
+		@php
+			$untill = ($year_in_loop == now()->year) ? now()->month : 12;
+		@endphp
+		<script>
+			var ctx = document.getElementById('year-{{$year_in_loop}}');
+			var colors = [
+				@for ($i=1; $i <= $untill; $i++)
+					'#3490DC',
+				@endfor
+			];
+
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: [
+						@for ($i=1; $i <= $untill; $i++)
+							'{{mn($i)}}',
+						@endfor
+					],
+					datasets: [{
+						label: 'Rank In That Month',
+						fill : false,
+						borderColor: "#3490DC",
+						pointBackgroundColor: "#fff",
+						pointBorderColor: "#3490DC",
+						pointHoverBackgroundColor: "#3490DC",
+						pointHoverBorderColor: "#3490DC",
+						data: [
+							@for ($i=1; $i <= $untill; $i++)
+								-{{$star->rank('month', $year_in_loop, $i)}},
+							@endfor
+						],
+						borderWidth: 2
+					},
+					{
+						label: 'Rank In General',
+						fill : false,
+						borderColor: "#E3342F",
+						pointBackgroundColor: "#fff",
+						pointBorderColor: "#E3342F",
+						pointHoverBackgroundColor: "#E3342F",
+						pointHoverBorderColor: "#E3342F",
+						data: [
+							@for ($i=1; $i <= $untill; $i++)
+								-{{$star->rank('general', $year_in_loop, $i)}},
+							@endfor
+						],
+						borderWidth: 2
+					}
+				]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		</script>
+	@endfor
 
 @endsection
