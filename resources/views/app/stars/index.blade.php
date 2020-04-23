@@ -44,6 +44,11 @@
 					@if(request('order') == 'year') checked @endif>
 					<label class="custom-control-label" for="year"> {{ucfirst('year')}} </label>
 				</div>
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="awards-count" name="order" class="custom-control-input" value="awards_count"
+					@if(request('order') == 'awards_count') checked @endif>
+					<label class="custom-control-label" for="awards-count"> Awards Count </label>
+				</div>
 				<hr>
 				<button type="submit" class="btn btn-warning"> Sort </button>
 			</form>

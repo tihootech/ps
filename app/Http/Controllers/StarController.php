@@ -16,6 +16,8 @@ class StarController extends Controller
     public function index(Request $request)
     {
         $stars = Star::query();
+        $stars = $stars->withCount('awards');
+
         if ($order = $request->order) {
             if ($order == 'tallest') {
                 $stars = $stars->orderBy('height', 'DESC');

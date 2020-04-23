@@ -67,12 +67,38 @@
 				</div>
 			</div>
 
-			<hr>
+			<div class="table-responsive-lg my-3">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							@for ($i=2019; $i <= now()->year; $i++)
+								<th> Rank In {{$i}} </th>
+							@endfor
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							@for ($i=2019; $i <= now()->year; $i++)
+								<th> {{$star->rank('year', $i)}} </th>
+							@endfor
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
 			@if ($star->awards->count())
 				<div class="row">
 					@foreach ($star->awards as $award)
 						<div class="col-md-2 p-1">
-							<div class="card @if($award->gaward) text-dark bg-warning @else text-light bg-secondary @endif">
+							<div class="card
+								@if($award->type == 'gaward')
+									text-dark bg-warning
+								@elseif ($award->type == 'beauty')
+									text-light bg-success
+								@else
+									text-light bg-secondary
+								@endif
+								">
 								<div class="card-header lead">{{$award->title}}</div>
 								<div class="card-body">
 									{{mn($award->month)}}, {{$award->year}}

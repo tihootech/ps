@@ -41,15 +41,17 @@ class Star extends Model
         return $this->hasMany(Point::class)->latest()->limit(10);
     }
 
-    public function rank($type)
+    public function rank($type, $year=null)
     {
         $tops = [];
         $now = now();
+        $year =$year ?? $now->year;
+        
         if ($type=='month') {
-            $tops = Point::tops($now->year, mn($now->month))->toArray();
+            $tops = Point::tops($year, mn($now->month))->toArray();
         }
         if ($type=='year') {
-            $tops = Point::tops()->toArray();
+            $tops = Point::tops($year)->toArray();
         }
         $key = array_search($this->id, array_column($tops, 'id'));
         return $key+1;

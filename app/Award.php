@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model
 {
-    protected $appends = ['title', 'gaward'];
+    protected $appends = ['title', 'type'];
 
     public function getTitleAttribute()
     {
         return $this->trophy->title ?? null;
     }
 
-    public function getGawardAttribute()
+    public function getTypeAttribute()
     {
-        return $this->trophy->gaward ?? null;
+        return $this->trophy->type ?? null;
     }
 
     public function trophy()

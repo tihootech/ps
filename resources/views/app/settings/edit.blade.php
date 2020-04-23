@@ -43,9 +43,10 @@
 							</div>
 							<div class="col-md-4">
 								<label> GAward </label>
-								<select class="form-control" name="gaward[]">
-									<option value="0"> No </option>
-									<option value="1" @if($trophy->gaward) selected @endif> Yes </option>
+								<select class="form-control" name="type[]">
+									<option value="regular" @if($trophy->type == 'regular') selected @endif> Regular </option>
+									<option value="gaward" @if($trophy->type == 'gaward') selected @endif> GAward </option>
+									<option value="beauty" @if($trophy->type == 'beauty') selected @endif> Beauty </option>
 								</select>
 							</div>
 						</div>

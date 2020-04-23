@@ -13,7 +13,7 @@
 							<th> Title </th>
 							<th> Year </th>
 							<th> Month </th>
-							<th> GAward </th>
+							<th> Type </th>
 							<th> Action </th>
 						</tr>
 					</thead>
@@ -26,10 +26,12 @@
 								<td> {{$award->year ?? '-'}} </td>
 								<td> {{$award->month ?? '-'}} </td>
 								<td>
-									@if ($award->gaward)
-										<b class="text-success"> Yes </b>
+									@if ($award->type == 'gaward')
+										<b class="text-danger"> GAward </b>
+									@elseif($award->type == 'beauty')
+										<span class="text-success"> Beauty </span>
 									@else
-										<span> No </span>
+										<span> {{ucfirst($award->type)}} </span>
 									@endif
 								</td>
 								<td>

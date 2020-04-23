@@ -14,7 +14,8 @@
 				<th> Size </th>
 				<th> Boobs </th>
 				@unless (isset($in_home))
-					<th> Year </th>
+					<th> Year Added </th>
+					<th> Awards </th>
 					<th colspan="2"> Actions </th>
 				@endunless
 			</tr>
@@ -43,6 +44,7 @@
 							data-content="{{$star->created_at->toFormattedDateString()}}" @endif>
 							{{$star->year ?? '-'}}
 						</td>
+						<td> {{$star->awards_count ?? 0}} </td>
 						<td>
 							<a href="{{route('star.edit', $star)}}" class="btn btn-link btn-sm">
 								<i class="material-icons icon text-success">edit</i>
