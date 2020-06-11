@@ -1,14 +1,15 @@
 @extends('layouts.app')
+
 @section('title') Home @endsection
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
 
             @if (count($birthdays))
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h4 class="m-0 text-primary"> <i class="material-icons">cake</i> Todays Birthdays </h4>
+                        <h4 class="m-0 text-primary"> <i class="mdi mdi-cake"></i> Todays Birthdays </h4>
                     </div>
                     <div class="card-body">
                         @foreach ($birthdays as $star_with_today_birthday)
@@ -25,7 +26,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="material-icons">add</i> Quick Plus </h4>
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-plus"></i> Quick Plus </h4>
                 </div>
                 <div class="card-body">
                     <form action="{{route('quick.plus')}}" method="post">
@@ -70,7 +71,7 @@
             @if (session('stars'))
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4 class="m-0 text-primary"> <i class="material-icons">list</i> Stars List </h4>
+                        <h4 class="m-0 text-primary"> <i class="mdi mdi-format-list-bulleted"></i> Stars List </h4>
                     </div>
                     <div class="card-body">
                         @include('includes.stars_table', ['stars' => session('stars'), 'in_home' => true])
@@ -80,10 +81,10 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="material-icons">person_add</i> Quick Add </h4>
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-account-plus-outline"></i> Quick Add </h4>
                 </div>
                 <div class="card-body">
                     <form class="text-center" action="{{route('quick.add')}}" method="post">
@@ -95,7 +96,7 @@
             </div>
             <div class="card my-3">
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="material-icons">rate_review</i> Quick Master </h4>
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-charity"></i> Quick Master </h4>
                 </div>
                 <div class="card-body">
                     <form class="row" action="{{route('quick.master')}}" method="post">
@@ -116,7 +117,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="material-icons">face</i> Quick Kid </h4>
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-face"></i> Quick Kid </h4>
                 </div>
                 <div class="card-body">
                     <form class="row" action="{{route('quick.kid')}}" method="post">

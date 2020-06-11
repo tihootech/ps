@@ -1,75 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta charset="utf-8" />
+        <title>@yield('title', 'PS')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>@yield('title', 'PS')</title>
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('img/favicon.jpg')}}">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.jpg')}}">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Material+Icons" rel="stylesheet">
+        <!-- App css -->
+        <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('assets/css/app.css')}}" rel="stylesheet" type="text/css" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-</head>
-<body>
+    </head>
 
-    <div id="app">
+    <body data-layout="horizontal">
 
-        @auth
-            @include('includes.header')
-        @endauth
+         <!-- Top Bar Start -->
+         <div class="topbar">
 
-        <main class="py-4">
+            <div class="navbar-custom-menu">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
 
-            <div class="container-fluid">
-                @if (session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {!! session('message') !!}
-                    </div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
-                        {!! session('error') !!}
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger" role="alert">
-                        <ul class="mt-3">
-                            @foreach ($errors->all() as $error)
-                                <li> {{$error}} </li>
-                            @endforeach
+                            <li>
+                                <a href="{{route('home')}}">
+                                    <i class="dripicons-home"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('results')}}">
+                                    <i class="dripicons-graph-bar"></i>
+                                    <span>Results</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('point.index')}}">
+                                    <i class="dripicons-folder-open"></i>
+                                    <span>Points</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('prixes')}}">
+                                    <i class="dripicons-graph-line"></i>
+                                    <span>Prixes</span>
+                                </a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="dripicons-view-thumb"></i>
+                                    <span>More Actions</span>
+                                </a>
+                                <ul class="submenu">
+
+                                    <li><a href="{{route('statics')}}"><i class="dripicons-dot"></i> Statics </a></li>
+                                    <li><a href="{{route('award.assign')}}"><i class="dripicons-dot"></i> Assign Award </a></li>
+                                    <li><a href="{{route('image.upload_form')}}"><i class="dripicons-dot"></i> Upload Image </a></li>
+                                    <li><a href="{{route('settings')}}"><i class="dripicons-dot"></i> Settings </a></li>
+                                    <div class="dropdown-divider"></div>
+                					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                						@csrf
+                					</form>
+                                    <li><a href="javascript:void" onclick="$('#logout-form').submit()"><i class="dripicons-dot"></i> Logout </a></li>
+
+
+                                    {{-- <li class="has-submenu">
+                                        <a href="#"><i class="dripicons-dot"></i>File name</a>
+                                        <ul class="submenu">
+                                            <li><a href="../horizontal/add-link.html"><i class="dripicons-dot"></i>Starter</a></li>
+                                        </ul>
+                                    </li> --}}
+
+                                </ul>
+                            </li>
+
                         </ul>
                     </div>
-                @endif
-                @if (session('messages') && is_array(session('messages')))
-                    <div class="alert alert-success" role="alert">
-                        <ul class="mt-3">
-                            @foreach (session('messages') as $msg)
-                                <li> {!!$msg!!} </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @yield('content')
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-wrapper">
+            <!-- Page Content-->
+            <div class="page-content">
+
+                <div class="container-fluid">
+
+                    @yield('content')
+
+                </div>
+
+                {{-- <footer class="footer text-center text-sm-left">
+                    <div class="boxed-footer">
+                        &copy; 2020 Crovex <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+                   </div>
+                </footer> --}}
+
             </div>
 
-        </main>
-    </div>
+        </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
 
-    @yield('charts')
 
-</body>
+
+        <!-- jQuery  -->
+        <script src="{{asset('assets/js/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('assets/js/metismenu.min.js')}}"></script>
+        <script src="{{asset('assets/js/waves.js')}}"></script>
+        <script src="{{asset('assets/js/feather.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
+
+
+        <!-- App js -->
+        <script src="{{asset('assets/js/app.js')}}"></script>
+        <script src="{{asset('assets/js/custom.js')}}"></script>
+
+    </body>
+
 </html>
