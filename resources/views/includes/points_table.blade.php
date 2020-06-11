@@ -1,5 +1,5 @@
 <div class="table-responsive-lg">
-	<table class="table table-striped table-hover table-bordered text-center @isset($in_show) table-sm @endisset">
+	<table class="table table-striped table-sm table-hover table-bordered text-center @isset($in_show) table-sm @endisset">
 		<thead>
 			<tr>
 				@unless (isset($in_show))
@@ -9,6 +9,7 @@
 				<th> Type </th>
 				<th> Year </th>
 				<th> Month </th>
+				<th> Actual Date </th>
 				<th colspan="2"> Actions </th>
 			</tr>
 		</thead>
@@ -28,17 +29,18 @@
 					<td> {{$point->type}} </td>
 					<td> {{$point->year}} </td>
 					<td> {{$point->month}} </td>
+					<td> {{$point->created_at->format('Y-m-d, H:i')}} </td>
 					<td>
-						<a href="{{route('point.edit', $point)}}" class="btn btn-link btn-sm">
-							<i class="material-icons icon text-success">edit</i>
+						<a href="{{route('point.edit', $point)}}" class="btn btn-link">
+							<i class="mdi mdi-pencil text-success"></i>
 						</a>
 					</td>
 					<td>
 						<form class="d-inline" action="{{route('point.destroy', $point)}}" method="post">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="btn btn-link btn-sm">
-								<i class="material-icons icon text-danger">delete</i>
+							<button type="submit" class="btn btn-link">
+								<i class="mdi mdi-delete text-danger"></i>
 							</button>
 						</form>
 					</td>

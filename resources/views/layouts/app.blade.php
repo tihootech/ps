@@ -102,6 +102,36 @@
 
                 <div class="container-fluid">
 
+
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {!! session('message') !!}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {!! session('error') !!}
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul class="mt-3">
+                                @foreach ($errors->all() as $error)
+                                    <li> {{$error}} </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('messages') && is_array(session('messages')))
+                        <div class="alert alert-success" role="alert">
+                            <ul class="mt-3">
+                                @foreach (session('messages') as $msg)
+                                    <li> {!!$msg!!} </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     @yield('content')
 
                 </div>
@@ -128,10 +158,21 @@
         <script src="{{asset('assets/js/feather.min.js')}}"></script>
         <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
 
+        <script src="{{asset('plugins/dropify/js/dropify.min.js')}}"></script>
+        <script src="{{asset('plugins/moment/moment.js')}}"></script>
+        <script src="{{asset('plugins/filter/isotope.pkgd.min.js')}}"></script>
+        <script src="{{asset('plugins/filter/masonry.pkgd.min.js')}}"></script>
+        <script src="{{asset('plugins/filter/jquery.magnific-popup.min.js')}}"></script>
+        <script src="{{asset('plugins/chartjs/chart.min.js')}}"></script>
+        <script src="{{asset('plugins/chartjs/roundedBar.min.js')}}"></script>
+        <script src="{{asset('plugins/lightpick/lightpick.js')}}"></script>
+        <script src="{{asset('assets/pages/jquery.profile.init.js')}}"></script>
 
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
         <script src="{{asset('assets/js/custom.js')}}"></script>
+
+        @yield('charts')
 
     </body>
 

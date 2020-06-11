@@ -7120,6 +7120,13 @@ hr.thick {
     margin-right: 24px;
 }
 
+.met-profile .met-profile-main .met-profile-main-pic img {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin-right: 24px;
+}
+
 .met-profile .met-profile-main .met-profile-main-pic .fro-profile_main-pic-change {
     cursor: pointer;
     background-color: #1761fd;
