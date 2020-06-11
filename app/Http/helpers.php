@@ -62,7 +62,9 @@ function prepare_multiple($inputs)
     foreach ($inputs as $key => $array) {
         if(is_array($array) && count($array)){
             foreach ($array as $i => $value) {
-                $result[$i][$key] = $value;
+                if ($value) {
+                    $result[$i][$key] = $value;
+                }
             }
         }
     }
