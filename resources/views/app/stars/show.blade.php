@@ -60,7 +60,7 @@
 							<a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="activity_detail_tab" data-toggle="pill" href="#activity_detail">Activity</a>
+							<a class="nav-link" id="recent_points_tab" data-toggle="pill" href="#recent_points">Recent Points</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">Portfolio</a>
@@ -201,7 +201,7 @@
 
 				</div><!--end general detail-->
 
-				<div class="tab-pane fade" id="activity_detail">
+				<div class="tab-pane fade" id="recent_points">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="card">

@@ -10,6 +10,7 @@ Auth::routes([
     'confirm' => false,
 ]);
 Route::get('home', 'HomeController@index')->name('home');
+Route::post('home', 'HomeController@update_settings')->name('update_settings');
 
 // settings
 Route::get('settings', 'SettingsController@edit')->name('settings');

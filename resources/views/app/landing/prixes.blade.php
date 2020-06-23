@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title') Prixes, Year : {{$year}} @endsection
 @section('content')
+
+
 	<div class="row">
 		@foreach ($prixes as $i => $collection)
 			@if ($collection->count())
@@ -29,6 +31,35 @@
 				</div>
 			@endif
 		@endforeach
+	</div>
+
+	<div class="card">
+		<div class="card-body">
+			<div class="table-responsive-lg">
+				<table class="table table-striped table-sm table-hover table-bordered text-center">
+					<thead>
+						<tr>
+							<th> Star </th>
+							<th> Golden Prixes </th>
+							<th> Silver Prixes </th>
+							<th> Bronze Prixes </th>
+							<th> Positions </th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach ($grands as $star_name => $counts)
+							<tr>
+								<th> {{$star_name}} </th>
+								<td> {{$counts['Golden Prix']}} </td>
+								<td> {{$counts['Silver Prix']}} </td>
+								<td> {{$counts['Bronze Prix']}} </td>
+								<td> {{$counts['Position']}} </td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 
 	<div class="card my-3">

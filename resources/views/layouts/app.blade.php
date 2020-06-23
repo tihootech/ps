@@ -21,80 +21,75 @@
 
     <body data-layout="horizontal">
 
-         <!-- Top Bar Start -->
-         <div class="topbar">
+        @auth
+            <div class="topbar">
 
-            <div class="navbar-custom-menu">
-                <div class="container-fluid">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
+               <div class="navbar-custom-menu">
+                   <div class="container-fluid">
+                       <div id="navigation">
+                           <!-- Navigation Menu-->
+                           <ul class="navigation-menu">
 
-                            <li>
-                                <a href="{{route('home')}}">
-                                    <i class="dripicons-home"></i>
-                                    <span>Home</span>
-                                </a>
-                            </li>
+                               <li>
+                                   <a href="{{route('home')}}">
+                                       <i class="dripicons-home"></i>
+                                       <span>Home</span>
+                                   </a>
+                               </li>
 
-                            <li>
-                                <a href="{{route('results')}}">
-                                    <i class="dripicons-graph-bar"></i>
-                                    <span>Results</span>
-                                </a>
-                            </li>
+                               <li>
+                                   <a href="{{route('results')}}">
+                                       <i class="dripicons-graph-bar"></i>
+                                       <span>Results</span>
+                                   </a>
+                               </li>
 
-                            <li>
-                                <a href="{{route('point.index')}}">
-                                    <i class="dripicons-folder-open"></i>
-                                    <span>Points</span>
-                                </a>
-                            </li>
+                               <li>
+                                   <a href="{{route('point.index')}}">
+                                       <i class="dripicons-folder-open"></i>
+                                       <span>Points</span>
+                                   </a>
+                               </li>
 
-                            <li>
-                                <a href="{{route('prixes')}}">
-                                    <i class="dripicons-graph-line"></i>
-                                    <span>Prixes</span>
-                                </a>
-                            </li>
+                               <li>
+                                   <a href="{{route('prixes')}}">
+                                       <i class="dripicons-graph-line"></i>
+                                       <span>Prixes</span>
+                                   </a>
+                               </li>
 
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="dripicons-view-thumb"></i>
-                                    <span>More Actions</span>
-                                </a>
-                                <ul class="submenu">
+                               <li class="has-submenu">
+                                   <a href="#">
+                                       <i class="dripicons-view-thumb"></i>
+                                       <span>More Actions</span>
+                                   </a>
+                                   <ul class="submenu">
 
-                                    <li><a href="{{route('statics')}}"><i class="dripicons-dot"></i> Statics </a></li>
-                                    <li><a href="{{route('award.assign')}}"><i class="dripicons-dot"></i> Assign Award </a></li>
-                                    <li><a href="{{route('image.upload_form')}}"><i class="dripicons-dot"></i> Upload Image </a></li>
-                                    <li><a href="{{route('settings')}}"><i class="dripicons-dot"></i> Settings </a></li>
-                                    <div class="dropdown-divider"></div>
-                					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                						@csrf
-                					</form>
-                                    <li><a href="javascript:void" onclick="$('#logout-form').submit()"><i class="dripicons-dot"></i> Logout </a></li>
+                                       <li><a href="{{route('statics')}}"><i class="dripicons-dot"></i> Statics </a></li>
+                                       <li><a href="{{route('award.assign')}}"><i class="dripicons-dot"></i> Assign Award </a></li>
+                                       <li><a href="{{route('image.upload_form')}}"><i class="dripicons-dot"></i> Upload Image </a></li>
+                                       <li><a href="{{route('settings')}}"><i class="dripicons-dot"></i> Settings </a></li>
+                                       <div class="dropdown-divider"></div>
+                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                           @csrf
+                                       </form>
+                                       <li><a href="javascript:void" onclick="$('#logout-form').submit()"><i class="dripicons-dot"></i> Logout </a></li>
 
+                                   </ul>
+                               </li>
 
-                                    {{-- <li class="has-submenu">
-                                        <a href="#"><i class="dripicons-dot"></i>File name</a>
-                                        <ul class="submenu">
-                                            <li><a href="../horizontal/add-link.html"><i class="dripicons-dot"></i>Starter</a></li>
-                                        </ul>
-                                    </li> --}}
+                           </ul>
 
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
+                           <div class="float-right">
+                               <form class="pt-2 mt-1" action="{{route('home')}}" method="get">
+                                   <input type="text" name="search" class="form-control" placeholder="Search..." id="header-search">
+                               </form>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        @endauth
 
         <div class="page-wrapper">
             <!-- Page Content-->

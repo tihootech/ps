@@ -22,11 +22,6 @@ window.addEventListener("keydown",function (e) {
 		e.preventDefault();
 		$('#inputs input:first').focus();
 	}
-	// f2
-	// if (e.keyCode === 113) {
-	// 	e.preventDefault();
-	// 	$('#star-add').focus();
-	// }
 	// f3
 	if (e.keyCode === 114) {
 		e.preventDefault();

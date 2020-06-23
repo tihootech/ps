@@ -9,6 +9,12 @@ function rs($length = 10) {
     return substr(str_shuffle(str_repeat($x='123456789ABCDEFGHJKLMNPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
 
+function settings($p=null)
+{
+    $settings = App\Setting::first();
+    return $p ? $settings->$p : $settings;
+}
+
 function short($string, $n=100)
 {
     $string = strip_tags($string);

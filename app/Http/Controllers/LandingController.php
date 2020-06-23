@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Star;
 use App\Point;
+use App\Award;
+use App\Trophy;
 
 class LandingController extends Controller
 {
@@ -39,7 +41,35 @@ class LandingController extends Controller
             }
         }
 
-    	return view('app.landing.prixes', compact('year', 'prixes', 'tracks'));
+        $list = ['Golden Prix', 'Silver Prix', 'Bronze Prix', 'Position'];
+        $trophies = Trophy::whereIn('title', $list)->pluck('id', 'title')->toArray();
+        $stars = Star::all();
+        $grands = [];
+        foreach ($stars as $star) {
+            $awards_won = Award::where('year', $year)->whereIn('trophy_id', $trophies)->where('star_id', $star->id)->count();
+            if ($awards_won) {
+                foreach ($trophies as $title => $tid) {
+                    $count = Award::where('year', $year)->where('trophy_id', $tid)->where('star_id', $star->id)->count();
+                    $grands[$star->name][$title] = $count;
+                }
+            }
+        }
+
+        uasort($grands, function($a, $b) {
+            $retval = $b['Golden Prix'] <=> $a['Golden Prix'];
+            if ($retval == 0) {
+                $retval = $b['Silver Prix'] <=> $a['Silver Prix'];
+                if ($retval == 0) {
+                    $retval = $b['Bronze Prix'] <=> $a['Bronze Prix'];
+                    if ($retval == 0) {
+                        $retval = $b['Position'] <=> $a['Position'];
+                    }
+                }
+            }
+            return $retval;
+        });
+
+    	return view('app.landing.prixes', compact('year', 'prixes', 'tracks', 'grands'));
     }
 
     public function statics(Request $request)

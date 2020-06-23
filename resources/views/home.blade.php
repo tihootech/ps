@@ -68,6 +68,27 @@
                 </div>
             </div>
 
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-history"></i> Recently Added Stars </h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between text-center">
+                        @foreach ($recent_stars as $recent_star)
+                            <div>
+                                <a href="{{route('star.show', $recent_star)}}">
+                                    {{$recent_star->name}}
+                                </a>
+                                <hr>
+                                <span>
+                                    {{$recent_star->created_at->format('Y-m-d')}}
+                                </span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
             @if (session('stars'))
                 <div class="card mt-3">
                     <div class="card-header">
@@ -138,5 +159,20 @@
             </div>
         </div>
 
+
+        <div class="col-md-12">
+            <form class="card" action="{{route('update_settings')}}" method="post">
+                @csrf
+                <div class="card-header">
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-pencil"></i> Notepad </h4>
+                </div>
+                <div class="card-body">
+                    <textarea name="notepad" rows="4" class="form-control">{{settings('notepad')}}</textarea>
+                </div>
+                <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection

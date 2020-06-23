@@ -18,24 +18,7 @@
 					<hr>
 
 					<div class="table-responsive-lg">
-						<table class="table">
-							<thead>
-								<tr>
-									<th> Height </th>
-									<th> Color </th>
-									<th> Size </th>
-									<th> Boobs </th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td> {{$star->height}} cm </td>
-									<td> {{$star->color}} </td>
-									<td> {{$star->size}} </td>
-									<td> {{$star->boobs}} </td>
-								</tr>
-							</tbody>
-						</table>
+
 					</div>
 					<hr>
 					<a href="{{route('star.edit', $star)}}" class="btn btn-outline-primary m-1">
@@ -58,36 +41,15 @@
 					</a>
 				</div>
 				<div class="col-md-6">
-					@for ($i=2019; $i <= now()->year; $i++)
-						<h4> Year {{$i}} </h4>
-						<canvas id="year-{{$i}}"></canvas>
-						@if ($i != now()->year)
-							<hr>
-						@endif
-					@endfor
+
 				</div>
 			</div>
 
 			<div class="table-responsive-lg my-3">
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							@for ($i=2019; $i <= now()->year; $i++)
-								<th> Rank In {{$i}} </th>
-							@endfor
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							@for ($i=2019; $i <= now()->year; $i++)
-								<th> {{$star->rank('year', $i)}} </th>
-							@endfor
-						</tr>
-					</tbody>
-				</table>
+				
 			</div>
 
-			
+
 
 		</div>
 	</div>

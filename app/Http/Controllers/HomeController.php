@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Star;
+use App\Setting;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -33,7 +35,18 @@ class HomeController extends Controller
             }
         }
 
+        // recently added stars
+        $recent_stars = Star::latest()->take(5)->get();
+
         // return view
-        return view('home', compact('strings', 'birthdays'));
+        return view('home', compact('strings', 'birthdays', 'recent_stars'));
+    }
+
+    public function update_settings(Request $request)
+    {
+        $settings = Setting::first();
+        $settings->notepad = $request->notepad;
+        $settings->save();
+        return back()->withMessage('Settings Updated');
     }
 }
