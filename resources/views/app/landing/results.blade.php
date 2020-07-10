@@ -22,12 +22,12 @@
 	                @foreach ($results as $i => $star)
 	                    <tr>
 	                        <th scope="row">{{$i+1}}</th>
-	                        <td> <a href="{{route("star.show", $star->id)}}"> {{$star->name}} </a> </td>
+	                        <td> <a href="{{route("star.show", $star->id)}}" class="text-primary"> {{$star->name}} </a> </td>
 	                        @for ($i=1; $i <= 12; $i++)
 	                            @php $month = mn($i); @endphp
-	                            <td> {{nf($star->$month ?? 0)}} </td>
+	                            <td class="text-dark"> {{nf($star->$month ?? 0)}} </td>
 	                        @endfor
-	                        <td> {{nf($star->sum)}} </td>
+	                        <th> {{nf($star->sum)}} </th>
 	                    </tr>
 	                @endforeach
 	                <tr>

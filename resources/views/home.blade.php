@@ -38,7 +38,7 @@
                         </div>
                         <hr>
                         <div class="row justify-content-between align-items-center">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="i1" name="points_type" class="custom-control-input" value="regular"
                                     @if(!session('points_type') || session('points_type') == 'regular') checked @endif>
@@ -50,17 +50,22 @@
                                     <label class="custom-control-label" for="i2"> instagram </label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="i3" name="points_type" class="custom-control-input" value="dream"
+                                    <input type="radio" id="i3" name="points_type" class="custom-control-input" value="photo"
+                                    @if(session('points_type') == 'photo') checked @endif>
+                                    <label class="custom-control-label" for="i3"> photo </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="i4" name="points_type" class="custom-control-input" value="dream"
                                     @if(session('points_type') == 'dream') checked @endif>
-                                    <label class="custom-control-label" for="i3"> dream </label>
+                                    <label class="custom-control-label" for="i4"> dream </label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <button type="button" onclick="clone('#inputs > input:first', '#inputs')" class="btn btn-warning btn-block">
                                     New Row
                                 </button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block"> Confirm </button>
                             </div>
                         </div>
@@ -164,7 +169,7 @@
             <form class="card" action="{{route('update_settings')}}" method="post">
                 @csrf
                 <div class="card-header">
-                    <h4 class="m-0 text-primary"> <i class="mdi mdi-pencil"></i> Notepad </h4>
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-tooltip-edit"></i> Notepad </h4>
                 </div>
                 <div class="card-body">
                     <textarea name="notepad" rows="4" class="form-control">{{settings('notepad')}}</textarea>

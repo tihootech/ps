@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Base;
 
 class Star extends Model
 {
@@ -51,6 +52,25 @@ class Star extends Model
     public function points()
     {
         return $this->hasMany(Point::class);
+    }
+
+    public function latest_points($n=25)
+    {
+        return $this->hasMany(Point::class)->latest()->take($n);
+    }
+
+    public function points_percents()
+    {
+        $bases = Base::all();
+        $total = Point::where('star_id', $this->id)->sum('amount');
+        foreach ($bases as $base) {
+             $sum = Point::where('star_id', $this->id)->whereType($base->type)->sum('amount');
+             $percents[$base->type] = [
+                 'amount' => $sum,
+                 'percent' => round(($sum * 100) / $total)
+             ];
+        }
+        return $percents;
     }
 
     public function rank($type, $year=null, $month=null)
@@ -101,7 +121,7 @@ class Star extends Model
 			}
     	}
     	if (is_array($parts->kids)) {
-			$type = 'cloth';
+			$type = 'kid';
 			$base_instance = Base::whereType($type)->first();
 			$base = $base_instance->quantitiy ?? 1;
 			foreach ($parts->kids as $amount) {

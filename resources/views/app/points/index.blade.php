@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') Stars @endsection
+@section('title') Points @endsection
 @section('content')
 	<div class="card mb-3">
 		<div class="card-body">

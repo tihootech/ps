@@ -12,6 +12,15 @@ Author: Mannatthemes
 Email: mannat.themes@gmail.com
 File: Leftbar
 */
+
+td a, th a {
+    color: #1761fd;
+}
+
+td a:hover, th a:hover {
+    color: #7367f0;
+}
+
 .left-sidenav {
     min-width: 270px;
     max-width: 270px;
@@ -7283,7 +7292,7 @@ hr.thick {
 }
 
 .skills .skill-box {
-    margin-bottom: 30px;
+    padding-bottom: 25px;
 }
 
 .skills .skill-box:last-of-type {
@@ -7323,15 +7332,15 @@ hr.thick {
 .skills .skill-box .progress-line > span > .percent-tooltip {
     position: absolute;
     right: -15px;
-    top: -30px;
-    margin-bottom: 10px;
+    bottom: -30px;
+    margin-top: 10px;
     color: #303e67;
     text-transform: uppercase;
     font-size: 13px;
 }
 
 .profile-activity-height {
-    height: 440px !important;
+    height: 546px !important;
 }
 
 .invoice-head {

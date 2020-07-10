@@ -14,7 +14,7 @@
 				<div class="form-group col-md-3">
 					<label> {{ucfirst('type')}} </label>
 					<select class="form-control" name="type">
-						<option value=""> Please Select </option>
+						<option value=""> -- Please Select -- </option>
 						@foreach ($bases as $base)
 							<option @if($base->type == $point->type) selected @endif> {{$base->type}} </option>
 						@endforeach
@@ -30,7 +30,7 @@
 				</div>
 				<hr class="w-100">
 				<div class="col-md-2">
-					<button type="submit" class="btn btn-primary btn-block"> Update Star </button>
+					<button type="submit" class="btn btn-primary btn-block"> Update Point </button>
 				</div>
 			</form>
 		</div>
