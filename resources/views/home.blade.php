@@ -168,16 +168,18 @@
                 </div>
                 <div class="card-body">
                     @foreach (settings()->watchListAsArray() as $name)
-                        <div class="card card-body bg-info text-light p-2 px-3 d-inline-block m-1">
-                            {{$name}}
-                            <form class="d-inline text-center" action="{{route('quick.add')}}" method="post">
-                                @csrf
-                                <input type="hidden" value="{{$name}}" name="star">
-                                <button type="submit" class="btn btn-primary btn-sm ml-2 p-1" title="Promote">
-                                    <i class="mdi mdi-arrow-up"></i>
-                                </button>
-                            </form>
-                        </div>
+                        @if ($name)
+                            <div class="card card-body bg-info text-light p-2 px-3 d-inline-block m-1">
+                                {{$name}}
+                                <form class="d-inline text-center" action="{{route('quick.add')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{$name}}" name="star">
+                                    <button type="submit" class="btn btn-primary btn-sm ml-2 p-1" title="Promote">
+                                        <i class="mdi mdi-arrow-up"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
                     @endforeach
                     <hr>
                     <a href="#edit-watch-list" data-toggle="collapse" class="text-success"> <i class="mdi mdi-pencil"></i> Edit </a>
