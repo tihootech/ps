@@ -112,8 +112,10 @@ function bq($query)
 
 function pdate($carbon)
 {
-    $date = \Morilog\Jalali\Jalalian::fromCarbon($carbon);
-    return $date->format('Y-m-d');
+    if ($carbon) {
+        $date = \Morilog\Jalali\Jalalian::fromCarbon($carbon);
+        return $date->format('Y-m-d');
+    }
 }
 
 function mn($i)

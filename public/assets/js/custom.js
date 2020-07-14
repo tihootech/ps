@@ -8,6 +8,7 @@ $(document).ready(function () {
 		trigger: 'hover',
 		html: true,
 	});
+	$('[data-toggle=tooltip]').tooltip();
 });
 
 // ==============================================================

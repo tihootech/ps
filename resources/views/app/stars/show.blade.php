@@ -96,7 +96,7 @@
 								<div class="card-body text-center">
 									<p>
 										Born in <b class="text-primary"> {{$star->country}} </b>
-										in <b class="text-primary"> {{$star->birthday->toFormattedDateString()}} </b>
+										in <b class="text-primary"> {{$star->birthday ? $star->birthday->toFormattedDateString() : '-'}} </b>
 										and she's <b class="text-primary"> {{$star->age}} </b> years old.
 										<br>
 										Persian birthdate is : <b class="text-primary"> {{pdate($star->birthday)}} </b>
@@ -250,7 +250,7 @@
 														<div class="d-flex justify-content-between align-items-center">
 															<p class="mb-0 font-14 w-75">
 																<span class="text-dark font-14">{{$star->name}}</span>
-																gained <a href="{{route('point.edit', 3)}}" class="text-primary">{{nf($point->amount)}}</a>
+																gained <a href="{{route('point.edit', 3)}}" class="text-primary">{{nf($point->amount)}}</a> points
 																as <b> {{$point->type}} </b>.
 																{{$point->created_at->format('Y-m-d')}},
 																{{$point->created_at->format('H:i')}}

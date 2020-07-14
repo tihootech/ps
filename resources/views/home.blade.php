@@ -86,7 +86,7 @@
                                 </a>
                                 <hr>
                                 <span>
-                                    {{$recent_star->created_at->format('Y-m-d')}}
+                                    {{pdate($recent_star->created_at)}}
                                 </span>
                             </div>
                         @endforeach
@@ -162,6 +162,33 @@
                     </form>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="m-0 text-primary"> <i class="mdi mdi-flag"></i> Watch List </h4>
+                </div>
+                <div class="card-body">
+                    @foreach (settings()->watchListAsArray() as $name)
+                        <div class="card card-body bg-info text-light p-2 px-3 d-inline-block m-1">
+                            {{$name}}
+                            <form class="d-inline text-center" action="{{route('quick.add')}}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{$name}}" name="star">
+                                <button type="submit" class="btn btn-primary btn-sm ml-2 p-1" title="Promote">
+                                    <i class="mdi mdi-arrow-up"></i>
+                                </button>
+                            </form>
+                        </div>
+                    @endforeach
+                    <hr>
+                    <a href="#edit-watch-list" data-toggle="collapse" class="text-success"> <i class="mdi mdi-pencil"></i> Edit </a>
+                    <form class="collapse text-center" method="post" id="edit-watch-list" action="{{route('update_settings')}}">
+                        @csrf
+                        <input type="hidden" name="note" value="{{settings('note')}}">
+                        <textarea name="watch_list" class="form-control mt-3">{{settings('watch_list')}}</textarea>
+                        <button type="submit" class="btn btn-primary mt-2"> Save </button>
+                    </form>
+                </div>
+            </div>
         </div>
 
 
@@ -172,6 +199,7 @@
                     <h4 class="m-0 text-primary"> <i class="mdi mdi-tooltip-edit"></i> Notepad </h4>
                 </div>
                 <div class="card-body">
+                    <input type="hidden" name="watch_list" value="{{settings('watch_list')}}">
                     <textarea name="notepad" rows="4" class="form-control">{{settings('notepad')}}</textarea>
                 </div>
                 <div class="card-footer text-right">

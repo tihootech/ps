@@ -45,6 +45,13 @@
                                </li>
 
                                <li>
+                                   <a href="{{route('star.index')}}">
+                                       <i class="dripicons-star"></i>
+                                       <span>Stars</span>
+                                   </a>
+                               </li>
+
+                               <li>
                                    <a href="{{route('point.index')}}">
                                        <i class="dripicons-folder-open"></i>
                                        <span>Points</span>
@@ -162,6 +169,7 @@
         <script src="{{asset('plugins/chartjs/roundedBar.min.js')}}"></script>
         <script src="{{asset('plugins/lightpick/lightpick.js')}}"></script>
         <script src="{{asset('assets/pages/jquery.profile.init.js')}}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>

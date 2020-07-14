@@ -46,6 +46,7 @@ class HomeController extends Controller
     {
         $settings = Setting::first();
         $settings->notepad = $request->notepad;
+        $settings->watch_list = $request->watch_list;
         $settings->save();
         return back()->withMessage('Settings Updated');
     }

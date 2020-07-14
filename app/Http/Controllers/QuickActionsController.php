@@ -13,16 +13,29 @@ class QuickActionsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function quick_add(Request $request)
     {
     	$request->validate([
 			'star' => 'required|string|unique:stars,name'
 		]);
-		$star = new Star;
+
+        $star = new Star;
 		$star->name = $request->star;
 		$star->year = now()->year;
 		$star->save();
+
+        // clear from watch list if exists
+        if (settings('watch_list')) {
+            $list = settings()->watchListAsArray();
+            if (($key = array_search($star->name, $list)) !== false) {
+                unset($list[$key]);
+            }
+            $settings = settings();
+            $settings->watch_list = implode(',', $list);
+            $settings->save();
+        }
+
 		return back()->withMessage("Star Added Successfully : <b>$star->name</b>");
     }
 

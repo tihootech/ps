@@ -46,16 +46,16 @@
 						</td>
 						<td> {{$star->awards_count ?? 0}} </td>
 						<td>
-							<a href="{{route('star.edit', $star)}}" class="btn btn-link btn-sm">
-								<i class="material-icons icon text-success">edit</i>
+							<a href="{{route('star.edit', $star)}}" class="btn btn-link">
+								<i class="mdi mdi-pencil text-success"></i>
 							</a>
 						</td>
 						<td>
 							<form class="d-inline" action="{{route('star.destroy', $star)}}" method="post">
 								@csrf
 								@method('DELETE')
-								<button type="submit" onclick="return confirm('Are you sure?');" class="btn btn-link btn-sm">
-									<i class="material-icons icon text-danger">delete</i>
+								<button type="submit" onclick="return confirm('Are you sure?');" class="btn btn-link">
+									<i class="mdi mdi-delete text-danger"></i>
 								</button>
 							</form>
 						</td>
